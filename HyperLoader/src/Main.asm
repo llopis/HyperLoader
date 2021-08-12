@@ -178,14 +178,14 @@ GetPulse:
 	;; Keep reading from cassette port until we get a low read
 waitWhileLow:
 	in	a, (c)
-	rla
+	add	a, a
 	jp	m, waitWhileLow
 
 	;; And how count how many times we get a high bit
 waitWhileHigh:
 	inc	c			
 	in	a, (c)
-	rla
+	add	a, a
 	jp	p, waitWhileHigh
 	ld	a, c
 	ret
