@@ -98,7 +98,7 @@ def main():
 		data.append(0x00)			# Checksum (L)
 		data.extend([0xFF, 0xFF, 0xFF, 0xFF])	#	Trailer
 
-	# Standard CPC header block
+	# Standard CPC data block
 	# TZX Header
 		data.append(0x11)			# Block ID
 		data.append(0x21)			# Pilot pulse length (L)
@@ -124,7 +124,7 @@ def main():
 		for i in range(loaderSegments):
 			crc = 0xFFFF								# CRC initial seed
 			for j in range(256):
-				data.append(loaderContent[j])			# Add byte from data
+				data.append(loaderContent[j])			# Add byte from loader
 				k = crc >> 8 ^ loaderContent[j]			# CRC iteration
 				k = k ^ k >> 4
 				crc = crc << 8 ^ k << 12 ^ k << 5 ^ k
